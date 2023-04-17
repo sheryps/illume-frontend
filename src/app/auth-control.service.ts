@@ -14,14 +14,14 @@ export class AuthControlService {
       password,
       role
     }
-    return this.http.post('http://localhost:3000/register',body)
+    return this.http.post('https://illume-app-task.onrender.com/register',body)
   }
   login(email:any,password:any){
     const body={
       email,
       password
     }
-    return this.http.post('http://localhost:3000/login',body)
+    return this.http.post('https://illume-app-task.onrender.com/login',body)
   }
   addproducts(title:any,description:any,price:any,discount:any,category:any,image:any){
     const body={
@@ -34,17 +34,17 @@ export class AuthControlService {
     }
     console.log(body);
     
-    return this.http.post('http://localhost:3000/addproducts',body)
+    return this.http.post('https://illume-app-task.onrender.com/addproducts',body)
   }
   getallpendingProducts(){
-    return this.http.get('http://localhost:3000/all-pendingproducts')
+    return this.http.get('https://illume-app-task.onrender.com/all-pendingproducts')
     //json data
   }
   changestatus(id:any){
     const body={
       id
     }    
-    return this.http.post('http://localhost:3000/approveproduct',body)
+    return this.http.post('https://illume-app-task.onrender.com/approveproduct',body)
   }
   addtoorginal(product:any){
     const body={
@@ -56,6 +56,6 @@ export class AuthControlService {
       category:product.category,
       image:product.image
     }
-    return this.http.post('http://localhost:3000/addtoooriginal',body)
+    return this.http.post('https://illume-app-task.onrender.com/addtoooriginal',body)
   }
 }

@@ -12,7 +12,7 @@ export class DataService {
   constructor(private http:HttpClient) { }
   
   getallProducts(){
-    return this.http.get('http://localhost:3000/all-products')
+    return this.http.get('https://illume-app-task.onrender.com/all-products')
     //json data
   }
   searchKey = new BehaviorSubject('')
