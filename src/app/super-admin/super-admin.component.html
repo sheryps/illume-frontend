@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <a class="navbar-brand" routerLink="/Super/super"><h1 class="text-secondary">
+            <i class="fa fa-shopping-cart"></i>E-Commerce</h1></a>
+        <li class="nav-item" style="margin-left: 1000px;"><a class="nav-link active text-black" aria-current="page" routerLink="" (click)="signUser()">SignOut</a></li>  
+    </ul>
+</nav>
+<h1>Super AdminDashBoard</h1>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let product of approvedproducts">                        
+                <div class="card h-100 align-items-center">
+                    <!-- Product image-->
+                    <img class="card-img-top" [src]="product.image" alt="..." >
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{product.title}}</h5>
+                            <h6>{{product.category}}</h6>
+                            <!-- Product price-->
+                            ${{product.price}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <button class="btn btn-success" (click)="addtooriginal(product)">Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

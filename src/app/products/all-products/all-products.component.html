@@ -1,0 +1,62 @@
+<app-navbar>
+
+</app-navbar>
+<div class="card-top container-fluid">
+    <h1 class="mt-2" style="margin-left: 80px;">Categories</h1>
+    <div class="container d-flex">
+        <div class="item">
+            <a (click)="filter('')">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">
+                <h6>All products</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filter('Electronics')">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
+                <h6>Electronics</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filter('Fashion')">
+                <img src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100" alt="">
+                <h6>Fashion</h6>
+            </a>
+        </div>
+        <div class="item">
+            <a (click)="filter('Jewelery')">
+                <img style="width: 100px; margin-top: 25px;height: 80px;" src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50" alt="">
+                <h6 style="margin-top: 22px;">Jewllery</h6>
+            </a>
+        </div>
+    </div>
+</div>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let product of filterCategory|filter:searchTerm:'title'">                        
+                <div class="card h-100 align-items-center">
+                    <!-- Product image-->
+                    <img class="card-img-top" [src]="product.image" alt="..." >
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{product.title}}</h5>
+                            <h6>{{product.category}}</h6>
+                            <!-- Product price-->
+                            ${{product.price}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <button  class="btn btn-outline-danger mt-auto" ><i class="fa fa-heart"></i></button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button  (click)="addtocart(product)" class="btn btn-outline-success mt-auto" ><i class="fa fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

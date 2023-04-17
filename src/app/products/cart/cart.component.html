@@ -1,0 +1,98 @@
+<!-- Empty Cart -->
+<div class="container text-center m-5 py-5" *ngIf="cartitem.length==0">
+    <div class="row">
+        <div class="col">
+            <img src="https://iranneowave.com/wp-content/uploads/2020/02/Cart-empty.gif" alt="" width="800" height="500">
+            <h3 class="m-3">Your cart is Empty</h3>
+            <button class="btn btn-primary" routerLink="/products">Shop Now</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- for cart items -->
+<div class="container py-5" *ngIf="cartitem.length!=0">
+    <div class="row">
+        <div class="col">
+            <table class="m-5">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody > 
+                    <tr *ngFor="let cart of cartitem, let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{cart.title}}</td>
+                        <td><img [src]=cart.image alt="" height="150" width="150"></td>
+                        <td>{{cart.description}}</td>
+                        <td>${{cart.price}}</td>
+                        <td>{{cart.discount}}%</td>
+                        <td><i class="fa-solid fa-trash-can text-danger" (click)="removecart(cart)"></i></td>
+                    </tr>
+                </tbody>   
+            </table>
+            <div class="m-5" style="float:right">
+                <button (click)="removeall()" class="btn btn-danger m-3">Empty Cart</button>
+                <button class="btn btn-success m-3" routerLink="/products">Shop More</button><br>
+                <div class="border border-secondary ps-5">
+                    <h3>CheckOut</h3><br>
+                    <b>Total:${{total}}</b><br>
+                    <b>DiscountAmount:${{discount}}</b><br>
+                    <b>Net Total:${{grand}}</b><br>
+                    <b>GST:18%</b><br>
+                    <b>Total Amount:${{gst}}</b><br>
+                    <p>**Tax included</p>
+                    <button class="btn btn-primary mb-3">Pay Now</button><br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Check Out Page</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <h1>Delivery Address</h1>
+        <form action="">
+            <input type="text" placeholder="Enter Your Name" Class="form-control mb-2">
+            <input type="text" placeholder="House No:" Class="form-control mb-2">
+            <input type="text" placeholder="Pincode" Class="form-control mb-2">
+            <input type="text" placeholder="State" Class="form-control mb-2">
+            <input type="text" placeholder="Country" Class="form-control mb-2">
+            <input type="text" placeholder="Contact No" Class="form-control mb-2">
+        </form>
+        </div>
+        <h3 class="text-center">Discounts</h3>
+        <div [ngSwitch]="grand">            
+            
+            <img (click)="discount50per()" *ngSwitchDefault="5" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/offer-badge-%7C-discount-%7C-50%25-off-design-template-dce4bd3f464cae9b6f92b3e1484e4603_screen.jpg?ts=1609013445" alt=""  width="100px" height="100px">
+            <img (click)="discount10per()" *ngSwitchDefault="5" src="https://th.bing.com/th/id/R.989d0321097abb2eb0b6a25bbf43e736?rik=c%2bLzAtYUkuy8uQ&riu=http%3a%2f%2fwww.castlecorp.com.au%2fcastlecorplegal%2fwp-content%2fuploads%2f2014%2f09%2f10off-e1368987453161.jpg&ehk=S%2bKQSnQgRHTgkop3C9ZFuKB6LIxwRBnzOVm8QEF93fY%3d&risl=&pid=ImgRaw&r=0" alt=""  width="100px" height="100px">
+            <img (click)="discount30per()" *ngSwitchDefault="5" src="https://thumbs.dreamstime.com/z/discount-30-22670374.jpg" alt=""  width="100px" height="100px">
+            <img (click)="discount5per()" *ngSwitchDefault="5" src="data:image/png;base64,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" alt="" width="100px" height="100px">
+        </div>
+        <div>
+            <br>
+            <b>Your Grand Total:${{updatedgrand}}</b>
+            <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="proceed()">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
