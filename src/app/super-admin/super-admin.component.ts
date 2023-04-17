@@ -31,7 +31,7 @@ export class SuperAdminComponent implements OnInit {
     this.Auth.addtoorginal(product).subscribe(
       (data:any)=>{
         alert(data.message);
-        
+        window.location.reload()
       },
       result=>{
         alert(result.error.message)

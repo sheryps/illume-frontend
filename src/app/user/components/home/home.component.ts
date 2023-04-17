@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         this.Auth.addproducts(title,description,price,discount,category,this.url).subscribe(
           (result:any)=>{
             alert(result.message)
-            this.router.navigateByUrl('/User/user')
+            window.location.reload()
           },
           result=>{
             alert(result.error.message)

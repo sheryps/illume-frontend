@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
     this.Auth.changestatus(product._id).subscribe(
       (data:any)=>{
         alert(data.message);
-        
+        window.location.reload()
       },
       result=>{
         alert(result.error.message)
