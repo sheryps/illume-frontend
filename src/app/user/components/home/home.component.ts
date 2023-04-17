@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthControlService } from 'src/app/auth-control.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
     discount:new FormControl,
     category:new FormControl
   })
-  constructor(private fb:FormBuilder,private Auth:AuthControlService){}
+  constructor(private fb:FormBuilder,private Auth:AuthControlService,private router:Router){}
   ngOnInit(): void {
     this.productData = this.fb.group({
       product:['',[Validators.required]],
@@ -52,6 +53,7 @@ export class HomeComponent implements OnInit {
         this.Auth.addproducts(title,description,price,discount,category,this.url).subscribe(
           (result:any)=>{
             alert(result.message)
+            this.router.navigateByUrl('/User/user')
           },
           result=>{
             alert(result.error.message)
